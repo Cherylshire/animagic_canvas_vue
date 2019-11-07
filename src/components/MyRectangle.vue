@@ -1,5 +1,4 @@
 <script>
-// Note how there's no template or styles in this component.
 
 export default {
   // Gets us the provider property from the parent <my-canvas> component.
@@ -16,7 +15,7 @@ export default {
       default: 0
     },
 
-    // width and height of rectangle
+    // End coordinates (percentage of canvas dimensions).
     w: {
       type: Number,
       default: 0
@@ -40,14 +39,15 @@ export default {
       oldRectangle: {
         x: null,
         y: null,
-        w: null
+        w: null,
+        h: null
       }
     }
   },
 
   computed: {
-    calculatedBox () {
-      const atx = this.provider.context
+    calculatedRectangle () {
+      const ctx = this.provider.context
 
       // Turn start / end percentages into x, y, width, height in pixels.
       const calculated = {
@@ -55,11 +55,10 @@ export default {
         y: this.y,
         w: this.w,
         h: this.h
-        
       }
 
       // Yes yes, side-effects. This lets us cache the box dimensions of the previous render.
-      // before we re-calculate calculatedBox the next render.
+      // before we re-calculate calculatedRectangle the next render.
       this.oldRectangle = calculated
       return calculated
     }
@@ -69,31 +68,23 @@ export default {
     // Since the parent canvas has to mount first, it's *possible* that the context may not be
     // injected by the time this render function runs the first time.
     if(!this.provider.context) return;
-    const atx = this.provider.context;
+    const ctx = this.provider.context;
 
     // Keep a reference to the box used in the previous render call.
     const oldRectangle = this.oldRectangle
-    // Calculate the new rectangle. (Computed properties update on-demand.)
-    const newRectangle = this.calculatedBox
+    // Calculate the new box. (Computed properties update on-demand.)
+    const newRectangle = this.calculatedRectangle
 
-    atx.beginPath();
+    ctx.beginPath();
     // Clear the old area from the previous render.
-    atx.clearRect(newRectangle.x, newRectangle.y - 42, newRectangle.w, 100);
+    ctx.clearRect(oldRectangle.x, oldRectangle.y, oldRectangle.w, oldRectangle.h);
+    // Clear the area for the text.
+    // ctx.clearRect(newRectangle.x, newRectangle.y - 42, newRectangle.w, 100);
 
     // Draw the new rectangle.
-    atx.fillRect(150, 150, 70, 70);
-    atx.fillStyle = this.color;
-    atx.fill();
-    atx.closePath();
+    ctx.rect(newRectangle.x, newRectangle.y, newRectangle.w, newRectangle.h);
+    ctx.fillStyle = this.color;
+    ctx.fill();
   }
 }
-
-// // squares
-// c.fillStyle = 'rgba(0, 0, 255, 0.3)'
-// c.fillRect(2, 2, 70, 70);
-// c.fillStyle = 'rgba(0, 0, 250, 0.3)'
-// c.fillRect(5, 5, 70, 70);
-
-// // circle
-// c.beginPath();
 </script>
