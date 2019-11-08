@@ -58,7 +58,6 @@ export default {
       return calculated
     }
   },
-
   render: function() {
     // Since the parent canvas has to mount first, it's *possible* that the context may not be
     // injected by the time this render function runs the first time.
@@ -72,22 +71,26 @@ export default {
 
     atx.beginPath();
     // Clear the old area from the previous render.
-    atx.clearRect(oldArc.x - oldArc.r, oldArc.y - oldArc.r, oldArc.x + oldArc.r , oldArc.y + oldArc.r );
+
+    // update();
+    atx.clearRect(oldArc.x - oldArc.r, oldArc.y - oldArc.r, oldArc.r - Math.PI , oldArc.r - Math.PI); 
+    // atx.clearRect( oldArc.x , oldArc.y , Math.sin( angle * ( Math.PI / 180 )) * oldArc.r , Math.cos( angle * ( Math.PI / 180 )) * oldArc.r );
 
     // Draw the new circle.
     atx.arc(newArc.x, newArc.y, newArc.r, 0, 2 * Math.PI);
     atx.fillStyle = this.color;
     atx.fill();
     atx.closePath();
-  }
+    // atx.globalCompositeOperation = 'destination-out'
+  },
+  // methods: {
+  //   update: function() {
+  //     const clearArc_1 = oldArc.x - oldArc.r;
+  //     const clearArc_2 = oldArc.y - oldArc.r;
+  //     const clearArc_3 = oldArc.x + oldArc.r;
+  //     const clearArc_4 = oldArc.y + oldArc.r;
+  //     const clearArc = (clearArc_1 + clearArc_2 + clearArc_3 + clearArc_4)
+  //   }
+  // }
 }
-
-// // squares
-// c.fillStyle = 'rgba(0, 0, 255, 0.3)'
-// c.fillRect(2, 2, 70, 70);
-// c.fillStyle = 'rgba(0, 0, 250, 0.3)'
-// c.fillRect(5, 5, 70, 70);
-
-// // circle
-// c.beginPath();
 </script>

@@ -1,11 +1,15 @@
 <template>
   <div class="canvas">
-    <h2>Draw a stick man.</h2>
+    <h1>This is Hoggie the stickman.</h1>
+    <h2>Hoggie was drawn with a circle and  9 rectangles. </h2>
+    <h2>He exist only on this canvas. His head can flow everywhere on the canvas, try to make him invisible.</h2>
+
     <!-- These are the custom components we'll create -->
     <!-- Values for `my-box` are percentages of the width of the canvas. -->
     <!-- Each bar will take up an equal space of the canvas. -->
-    <!-- <input type="range" name="points" min="50" max="1400" v-model="circleValues[0].x"> -->
-    <!-- <input type="range" name="points" min="0"  max="200"  v-model="circleValues[0].y"> -->
+
+    <p>left and right</p><input type="range" name="points" min="50" max="1400" v-model="circleValues[0].x">
+    <p>up and down</p><input type="range" name="points" min="0"  max="1000"  v-model="circleValues[0].y">
     <!-- <input type="range" name="points" min="50" max="1400" v-model="rectangleValues[0].x"> -->
     <!-- <input type="range" name="points" min="120"  max="400"  v-model="rectangleValues[0].y"> -->
     <!-- <input type="range" name="points" min="50" max="1400" v-model="stickraValues[0].x"> -->
@@ -15,9 +19,9 @@
     <my-canvas style="width: 100%; height: 1000px;">
       <my-circle
         v-for="circle in circleValues"
-        :x="circle.x"
-        :y="circle.y"
-        :r="circle.r"
+        :x="parseInt(circle.x)"
+        :y="parseInt(circle.y)"
+        :r="parseInt(circle.r)"
         :color="circle.color"
       >
       </my-circle>
@@ -154,34 +158,34 @@
     data: function() {
       return {
         rectangleValues: [
-          {color: 'navy', x: 70, y: 200, w: 120, h: 150}
+          {color: 'navy', x: 0, y: 0, w: 1300, h: 1200}
         ],
         circleValues: [
-          {color: 'green', x: 130, y: 100, r: 70}
+          {color: 'green', x: 450, y: 100, r: 70}
         ],
         stickruaValues: [
-          {color: 'red', x: 50, y: 200, w: 20, h: 130}
+          {color: 'red', x: 270, y: 200, w: 120, h: 30}
         ],
         stickluaValues: [
-          {color: 'red', x: 190, y: 200, w: 20, h: 130}
+          {color: 'red', x: 510, y: 200, w: 120, h: 30}
         ],
         stickrulValues: [
-          {color: 'red', x: 170, y: 350, w: 20, h: 140}
+          {color: 'red', x: 390, y: 360, w: 30, h: 140}
         ],
         sticklulValues: [
-          {color: 'red', x: 70, y: 350, w: 20, h: 140}
+          {color: 'red', x: 480, y: 360, w: 30, h: 140}
         ],
         stickrlaValues: [
-          {color: 'black', x: 50, y: 330, w: 20, h: 90}
+          {color: 'black', x: 180, y: 200, w: 90, h: 30}
         ],
         stickllaValues: [
-          {color: 'black', x: 190, y: 330, w: 20, h: 90}
+          {color: 'black', x: 630, y: 200, w: 90, h: 30}
         ],
         stickrllValues: [
-          {color: 'black', x: 170, y: 450, w: 20, h: 90}
+          {color: 'black', x: 390, y: 500, w: 30, h: 90}
         ],
         sticklllValues: [
-          {color: 'black', x: 70, y: 450, w: 20, h: 90}
+          {color: 'black', x: 480, y: 500, w: 30, h: 90}
         ]
       }
     },
