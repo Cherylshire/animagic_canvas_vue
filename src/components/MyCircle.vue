@@ -73,7 +73,7 @@ export default {
     // Clear the old area from the previous render.
 
     // update();
-    atx.clearRect(oldArc.x - oldArc.r, oldArc.y - oldArc.r, oldArc.r - Math.PI , oldArc.r - Math.PI); 
+    atx.clearRect(oldArc.x - oldArc.r, oldArc.y - oldArc.r, oldArc.r * Math.PI , oldArc.r * Math.PI); 
     // atx.clearRect( oldArc.x , oldArc.y , Math.sin( angle * ( Math.PI / 180 )) * oldArc.r , Math.cos( angle * ( Math.PI / 180 )) * oldArc.r );
 
     // Draw the new circle.

@@ -158,7 +158,7 @@
     data: function() {
       return {
         rectangleValues: [
-          {color: 'navy', x: 0, y: 0, w: 1300, h: 1200}
+          {color: 'navy', x: 390, y: 200, w: 120, h: 160}
         ],
         circleValues: [
           {color: 'green', x: 450, y: 100, r: 70}
